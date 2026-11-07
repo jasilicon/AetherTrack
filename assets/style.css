@@ -8,8 +8,12 @@ window.aether-window {
     background-image: none;
 }
 
+label {
+    color: #e2e8f0;
+}
+
 .glass-deck {
-    background-color: rgba(20, 22, 30, 0.72);
+    background-color: rgba(20, 23, 31, 0.92);
     background-image:
         linear-gradient(155deg,
             rgba(255, 255, 255, 0.075) 0%,
@@ -24,7 +28,7 @@ window.aether-window {
         inset 1px 1px 0 rgba(255, 255, 255, 0.22),
         inset -1px -1px 0 rgba(255, 255, 255, 0.05),
         0 24px 64px rgba(0, 0, 0, 0.55);
-    color: rgba(236, 240, 248, 0.92);
+    color: #f8fafc;
     font-family: "Inter", "Cantarell", "Segoe UI", sans-serif;
 }
 
@@ -143,10 +147,10 @@ button.add-skill:active {
 .timer {
     margin: 4px 0 0 0;
     font-size: 54px;
-    font-weight: 300;
+    font-weight: 600;
     letter-spacing: 0.02em;
-    color: rgba(248, 250, 252, 0.97);
-    text-shadow: 0 0 28px rgba(96, 165, 250, 0.20);
+    color: #ffffff;
+    text-shadow: 0 0 24px rgba(96, 165, 250, 0.14);
 
     /* Digits must never shift width as the timer ticks. */
     font-variant-numeric: tabular-nums;
@@ -164,8 +168,9 @@ button.add-skill:active {
 .lifetime {
     margin: 2px 0 12px 0;
     font-size: 12px;
+    font-weight: 500;
     letter-spacing: 0.02em;
-    color: rgba(148, 163, 184, 0.70);
+    color: rgba(255, 255, 255, 0.82);
 }
 
 button.primary-action {
@@ -212,7 +217,7 @@ button.secondary-action {
     background-color: rgba(255, 255, 255, 0.055);
     background-image: none;
     box-shadow: none;
-    color: rgba(203, 213, 225, 0.82);
+    color: #d1d5db;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.04em;
@@ -221,7 +226,12 @@ button.secondary-action {
 button.secondary-action:hover {
     background-color: rgba(255, 255, 255, 0.09);
     border-color: rgba(255, 255, 255, 0.15);
-    color: rgba(248, 250, 252, 0.95);
+    color: #ffffff;
+}
+
+button.secondary-action:disabled {
+    color: #d1d5db;
+    background-color: rgba(255, 255, 255, 0.04);
 }
 
 /* The hold button paints its own background, progress fill and border with
@@ -259,7 +269,7 @@ button.insights-toggle {
     background-color: transparent;
     background-image: none;
     box-shadow: none;
-    color: rgba(148, 163, 184, 0.76);
+    color: rgba(255, 255, 255, 0.82);
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -268,7 +278,7 @@ button.insights-toggle {
 button.insights-toggle:hover {
     background-color: rgba(255, 255, 255, 0.055);
     border-color: rgba(255, 255, 255, 0.08);
-    color: rgba(226, 232, 240, 0.92);
+    color: #ffffff;
 }
 
 .insights-panel {
@@ -286,7 +296,7 @@ button.insights-toggle:hover {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.10em;
-    color: rgba(148, 163, 184, 0.64);
+    color: rgba(255, 255, 255, 0.82);
 }
 
 .mastery-bar,
@@ -328,7 +338,7 @@ list.history-list > row {
 .history-note {
     font-size: 10px;
     font-style: italic;
-    color: rgba(148, 163, 184, 0.62);
+    color: rgba(203, 213, 225, 0.78);
 }
 
 .history-duration {
@@ -345,7 +355,7 @@ list.history-list > row {
 
 .history-empty {
     font-size: 11px;
-    color: rgba(148, 163, 184, 0.55);
+    color: rgba(203, 213, 225, 0.72);
 }
 
 /* --------------------------------------------------------------------------
@@ -455,7 +465,7 @@ popover.note-popover entry:focus {
 
 .form-hint {
     font-size: 11px;
-    color: rgba(148, 163, 184, 0.66);
+    color: rgba(203, 213, 225, 0.74);
 }
 
 button.popover-action {

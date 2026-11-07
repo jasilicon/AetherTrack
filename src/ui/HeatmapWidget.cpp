@@ -56,6 +56,22 @@ Rgb parse_hex(std::string_view value)
     return color;
 }
 
+// Push an accent colour away from grey so heatmap cells stay vivid against
+// the dark card instead of looking washed out.
+Rgb vibrant(const Rgb& color, double intensity)
+{
+    const double luma = 0.2126 * color.r + 0.7152 * color.g + 0.0722 * color.b;
+    const double saturation = 1.25 + 0.35 * intensity;
+    const double lift = 0.04 + 0.10 * intensity;
+
+    const auto channel = [&](double value) {
+        const double boosted = luma + (value - luma) * saturation;
+        return std::clamp(boosted + (1.0 - boosted) * lift, 0.0, 1.0);
+    };
+
+    return {channel(color.r), channel(color.g), channel(color.b)};
+}
+
 void rounded_rect(const Cairo::RefPtr<Cairo::Context>& cr,
                   double x,
                   double y,
@@ -204,15 +220,15 @@ void MasteryBar::draw(const Cairo::RefPtr<Cairo::Context>& cr,
         : format_hours(m_total_seconds, true) + " / " +
               format_hours(upper, false) + " hrs";
 
-    draw_text(cr, level_text, 0.0, 0.0, 9.5, Rgb{0.82, 0.85, 0.91}, 0.82, true);
+    draw_text(cr, level_text, 0.0, 0.0, 9.5, Rgb{0.86, 0.89, 0.94}, 0.90, true);
     draw_text(cr,
               value_text,
-              static_cast<double>(width) - static_cast<double>(text_width(cr, value_text, 9.0, false)),
+              static_cast<double>(width) - static_cast<double>(text_width(cr, value_text, 9.0, true)),
               0.0,
               9.0,
-              accent,
-              0.88,
-              false);
+              Rgb{0.49, 0.83, 0.99},
+              1.0,
+              true);
 
     const double bar_x = 0.0;
     const double bar_y = 23.0;
@@ -314,27 +330,28 @@ void HeatmapWidget::draw(const Cairo::RefPtr<Cairo::Context>& cr,
 
         if (m_days[i] < 0) {
             rounded_rect(cr, x, y, cell, cell, radius);
-            cr->set_source_rgba(1.0, 1.0, 1.0, 0.025);
+            cr->set_source_rgba(0.0, 0.0, 0.0, 0.18);
             cr->fill();
             continue;
         }
 
         if (m_days[i] == 0) {
             rounded_rect(cr, x, y, cell, cell, radius);
-            cr->set_source_rgba(1.0, 1.0, 1.0, 0.04);
+            cr->set_source_rgba(0.0, 0.0, 0.0, 0.35);
             cr->fill_preserve();
             cr->set_line_width(0.75);
-            cr->set_source_rgba(1.0, 1.0, 1.0, 0.075);
+            cr->set_source_rgba(1.0, 1.0, 1.0, 0.06);
             cr->stroke();
             continue;
         }
 
         const double hours = static_cast<double>(m_days[i]) / 3600.0;
         const double intensity = std::clamp(std::pow(hours / 5.0, 0.55), 0.0, 1.0);
-        const double alpha = 0.22 + 0.72 * intensity;
+        const Rgb day_color = vibrant(accent, intensity);
+        const double alpha = 0.65 + 0.35 * intensity;
 
         rounded_rect(cr, x, y, cell, cell, radius);
-        cr->set_source_rgba(accent.r, accent.g, accent.b, alpha);
+        cr->set_source_rgba(day_color.r, day_color.g, day_color.b, alpha);
         cr->fill();
     }
 }

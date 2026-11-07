@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(AetherTrack
-    VERSION 0.1.1
+    VERSION 0.1.2
     DESCRIPTION "Ultra-lightweight infinite skill-tracking timer"
     LANGUAGES CXX)
 
