@@ -613,7 +613,10 @@ void MainWindow::refresh_insights()
 
     m_heatmap.set_days(std::move(daily));
 
-    m_history_list.remove_all();
+    while (Gtk::Widget* child = m_history_list.get_first_child()) {
+        m_history_list.remove(*child);
+    }
+
     if (history.empty()) {
         auto* row = Gtk::make_managed<Gtk::ListBoxRow>();
         row->set_activatable(false);
