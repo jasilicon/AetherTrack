@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build pkg-config \
+            libgtkmm-4.0-dev libsqlite3-dev libx11-dev
+
+      - name: Build .deb
+        run: |
+          export VERSION="${GITHUB_REF_NAME#v}"
+          bash packaging/package.sh deb
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/aethertrack_*.deb
+          fail_on_unmatched_files: true

@@ -1,0 +1,10 @@
+# Build trees
+/build/
+/build-*/
+/dist/
+/.tools/
+compile_commands.json
+
+# Packaged output
+*.AppImage
+*.deb

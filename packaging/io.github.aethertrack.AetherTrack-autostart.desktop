@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=AetherTrack
+Comment=Start the AetherTrack skill timer with the desktop session
+Exec=aethertrack
+TryExec=aethertrack
+Icon=io.github.aethertrack.AetherTrack
+Terminal=false
+NoDisplay=true
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=2
+StartupWMClass=aethertrack

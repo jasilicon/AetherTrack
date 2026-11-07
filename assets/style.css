@@ -1,0 +1,489 @@
+/* ==========================================================================
+   AetherTrack — Sector 4 glass deck + micro pill
+   Dark glassmorphism: translucent surface, specular edge, 16px radius.
+   ========================================================================== */
+
+window.aether-window {
+    background-color: transparent;
+    background-image: none;
+}
+
+.glass-deck {
+    background-color: rgba(20, 22, 30, 0.72);
+    background-image:
+        linear-gradient(155deg,
+            rgba(255, 255, 255, 0.075) 0%,
+            rgba(255, 255, 255, 0.020) 34%,
+            rgba(255, 255, 255, 0.000) 62%),
+        radial-gradient(circle at 18% 0%,
+            rgba(96, 165, 250, 0.10) 0%,
+            rgba(96, 165, 250, 0.00) 42%);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 16px;
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.22),
+        inset -1px -1px 0 rgba(255, 255, 255, 0.05),
+        0 24px 64px rgba(0, 0, 0, 0.55);
+    color: rgba(236, 240, 248, 0.92);
+    font-family: "Inter", "Cantarell", "Segoe UI", sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Title bar
+   -------------------------------------------------------------------------- */
+
+.app-titlebar {
+    min-height: 26px;
+    padding: 10px 12px 10px 16px;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.app-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: rgba(236, 240, 248, 0.78);
+}
+
+button.window-control {
+    min-width: 26px;
+    min-height: 26px;
+    padding: 0 6px;
+    margin-left: 4px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    color: rgba(236, 240, 248, 0.60);
+    font-size: 13px;
+    transition: background-color 140ms ease,
+                border-color 140ms ease,
+                color 140ms ease;
+}
+
+button.window-control:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.92);
+}
+
+button.window-control:active {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+button.window-control.close:hover {
+    background-color: rgba(239, 68, 68, 0.85);
+    border-color: rgba(248, 113, 113, 0.90);
+    color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Main glass deck
+   -------------------------------------------------------------------------- */
+
+.deck {
+    padding: 12px 22px 12px 22px;
+}
+
+.activity-row {
+    min-height: 38px;
+}
+
+dropdown.activity-dropdown > button {
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.055);
+    background-image: none;
+    box-shadow: none;
+    color: rgba(236, 240, 248, 0.90);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+dropdown.activity-dropdown > button:hover {
+    background-color: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+dropdown.activity-dropdown > button:focus {
+    border-color: rgba(96, 165, 250, 0.65);
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.16);
+}
+
+button.add-skill {
+    min-width: 38px;
+    min-height: 38px;
+    padding: 0;
+    border: 1px solid rgba(96, 165, 250, 0.28);
+    border-radius: 10px;
+    background-color: rgba(96, 165, 250, 0.12);
+    background-image: none;
+    box-shadow: none;
+    color: rgba(191, 219, 254, 0.95);
+    font-size: 20px;
+    font-weight: 300;
+}
+
+button.add-skill:hover {
+    background-color: rgba(96, 165, 250, 0.22);
+    border-color: rgba(96, 165, 250, 0.45);
+}
+
+button.add-skill:active {
+    background-color: rgba(96, 165, 250, 0.30);
+}
+
+.timer {
+    margin: 4px 0 0 0;
+    font-size: 54px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: rgba(248, 250, 252, 0.97);
+    text-shadow: 0 0 28px rgba(96, 165, 250, 0.20);
+
+    /* Digits must never shift width as the timer ticks. */
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+}
+
+.timer.timer-compact {
+    font-size: 40px;
+}
+
+.timer.timer-tight {
+    font-size: 30px;
+}
+
+.lifetime {
+    margin: 2px 0 12px 0;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: rgba(148, 163, 184, 0.70);
+}
+
+button.primary-action {
+    min-height: 48px;
+    border: 1px solid rgba(96, 165, 250, 0.40);
+    border-radius: 12px;
+    background-color: rgba(59, 130, 246, 0.82);
+    background-image: linear-gradient(135deg,
+        rgba(96, 165, 250, 0.95) 0%,
+        rgba(59, 130, 246, 0.90) 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        0 8px 24px rgba(37, 99, 235, 0.24);
+    color: #f8fbff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    transition: background-color 140ms ease,
+                border-color 140ms ease,
+                box-shadow 140ms ease;
+}
+
+button.primary-action:hover {
+    border-color: rgba(147, 197, 253, 0.60);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 10px 30px rgba(37, 99, 235, 0.32);
+}
+
+button.primary-action.running {
+    border-color: rgba(251, 146, 60, 0.55);
+    background-image: linear-gradient(135deg,
+        rgba(249, 115, 22, 0.92) 0%,
+        rgba(239, 68, 68, 0.88) 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        0 8px 24px rgba(234, 88, 12, 0.24);
+}
+
+button.secondary-action {
+    min-height: 38px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.055);
+    background-image: none;
+    box-shadow: none;
+    color: rgba(203, 213, 225, 0.82);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+button.secondary-action:hover {
+    background-color: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(248, 250, 252, 0.95);
+}
+
+/* The hold button paints its own background, progress fill and border with
+   Cairo in HoldButton::snapshot_vfunc(). Keep the GTK background out of the
+   way so the label remains the only thing the base class draws. */
+button.hold-button,
+button.hold-button:hover,
+button.hold-button:active {
+    border: none;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.hold-label {
+    color: rgba(254, 242, 242, 0.94);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.40);
+}
+
+/* --------------------------------------------------------------------------
+   Insights drawer
+   -------------------------------------------------------------------------- */
+
+button.insights-toggle {
+    min-height: 32px;
+    padding: 0 10px;
+    margin-top: 0;
+    border: 1px solid transparent;
+    border-top-color: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    color: rgba(148, 163, 184, 0.76);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+}
+
+button.insights-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: rgba(226, 232, 240, 0.92);
+}
+
+.insights-panel {
+    padding: 10px 12px 12px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.075);
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.022);
+    background-image: linear-gradient(160deg,
+        rgba(255, 255, 255, 0.035) 0%,
+        rgba(255, 255, 255, 0.006) 52%,
+        rgba(255, 255, 255, 0.000) 100%);
+}
+
+.insights-section-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    color: rgba(148, 163, 184, 0.64);
+}
+
+.mastery-bar,
+.heatmap {
+    background-color: transparent;
+    background-image: none;
+}
+
+scrolledwindow.history-scroll,
+.history-scroll > viewport {
+    border: none;
+    background-color: transparent;
+    background-image: none;
+}
+
+list.history-list {
+    background-color: transparent;
+    background-image: none;
+}
+
+list.history-list > row {
+    padding: 0;
+    background-color: transparent;
+    background-image: none;
+    outline: none;
+}
+
+.history-row {
+    padding: 4px 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.history-date {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(203, 213, 225, 0.80);
+}
+
+.history-note {
+    font-size: 10px;
+    font-style: italic;
+    color: rgba(148, 163, 184, 0.62);
+}
+
+.history-duration {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(226, 232, 240, 0.84);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+}
+
+.history-empty-row {
+    padding: 8px 2px;
+}
+
+.history-empty {
+    font-size: 11px;
+    color: rgba(148, 163, 184, 0.55);
+}
+
+/* --------------------------------------------------------------------------
+   Micro pill
+   -------------------------------------------------------------------------- */
+
+.micro-pill {
+    padding: 0 10px;
+}
+
+.pill-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(236, 240, 248, 0.88);
+}
+
+.pill-timer {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(248, 250, 252, 0.96);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+}
+
+.pill-sep {
+    font-size: 10px;
+    color: rgba(148, 163, 184, 0.38);
+}
+
+button.pill-control {
+    min-width: 26px;
+    min-height: 26px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    color: rgba(203, 213, 225, 0.82);
+    font-size: 12px;
+}
+
+button.pill-control:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.96);
+}
+
+button.pill-control:active {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+/* --------------------------------------------------------------------------
+   Popovers / forms
+   -------------------------------------------------------------------------- */
+
+popover.add-popover > contents,
+popover.note-popover > contents {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    background-color: rgba(18, 20, 28, 0.98);
+    background-image: linear-gradient(160deg,
+        rgba(255, 255, 255, 0.055) 0%,
+        rgba(255, 255, 255, 0.010) 45%,
+        rgba(255, 255, 255, 0.000) 100%);
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.14),
+        0 18px 48px rgba(0, 0, 0, 0.52);
+    color: rgba(236, 240, 248, 0.92);
+}
+
+.popover-form {
+    min-width: 220px;
+}
+
+.popover-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    color: rgba(203, 213, 225, 0.78);
+}
+
+popover.add-popover entry,
+popover.note-popover entry {
+    min-height: 34px;
+    padding: 0 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+    background-color: rgba(255, 255, 255, 0.055);
+    background-image: none;
+    box-shadow: none;
+    color: rgba(248, 250, 252, 0.95);
+    caret-color: rgba(96, 165, 250, 0.95);
+}
+
+popover.add-popover entry:focus,
+popover.note-popover entry:focus {
+    border-color: rgba(96, 165, 250, 0.60);
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.14);
+}
+
+.form-error {
+    font-size: 11px;
+    color: rgba(252, 165, 165, 0.92);
+}
+
+.form-hint {
+    font-size: 11px;
+    color: rgba(148, 163, 184, 0.66);
+}
+
+button.popover-action {
+    min-height: 30px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.055);
+    background-image: none;
+    box-shadow: none;
+    color: rgba(203, 213, 225, 0.86);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+button.popover-action:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: rgba(248, 250, 252, 0.96);
+}
+
+button.popover-action.primary {
+    border-color: rgba(96, 165, 250, 0.45);
+    background-color: rgba(59, 130, 246, 0.80);
+    color: #f8fbff;
+}
+
+button.popover-action.primary:hover {
+    background-color: rgba(59, 130, 246, 0.95);
+    border-color: rgba(147, 197, 253, 0.60);
+}

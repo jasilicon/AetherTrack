@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=AetherTrack
+GenericName=Skill Timer
+Comment=Ultra-lightweight infinite skill-tracking timer
+Exec=aethertrack
+Icon=io.github.aethertrack.AetherTrack
+Terminal=false
+Categories=Utility;
+Keywords=timer;tracker;skills;productivity;focus;time;
+StartupNotify=true
+StartupWMClass=aethertrack
+X-GNOME-UsesNotifications=false
